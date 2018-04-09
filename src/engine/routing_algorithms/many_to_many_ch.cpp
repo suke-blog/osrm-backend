@@ -159,8 +159,7 @@ void backwardRoutingStep(const DataFacade<Algorithm> &facade,
 
 } // namespace ch
 
-std::vector<NodeID>
-retrievePackedPathFromSearchSpace(NodeID middle_node_id,
+void retrievePackedPathFromSearchSpace(NodeID middle_node_id,
                                   const unsigned column_idx,
                                   std::vector<NodeBucket> &search_space_with_buckets,
                                   std::vector<NodeID> &packed_leg)
@@ -204,7 +203,6 @@ retrievePackedPathFromSearchSpace(NodeID middle_node_id,
                                        current_node_id,
                                        NodeBucket::ColumnCompare(column_idx));
     }
-    return packed_leg;
 }
 
 template <>
