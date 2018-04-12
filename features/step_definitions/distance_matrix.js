@@ -17,7 +17,8 @@ const distancesParse = function(v) { return isNaN(parseFloat(v)); };
 function tableParse(table, noRoute, annotation, callback) {
 
     const parse = annotation == 'distances' ? distancesParse : durationsParse;
-    const params = annotation == 'distances' ? {annotations: 'distance'} : {annotations: 'duration'};
+    const params = this.queryParams;
+    params.annotations = annotation == 'distances' ? 'distance' : 'duration';
 
     var tableRows = table.raw();
 
@@ -53,8 +54,6 @@ function tableParse(table, noRoute, annotation, callback) {
     this.reprocessAndLoadData((e) => {
         if (e) return callback(e);
         // compute matrix
-
-        // var params = this.queryParams;
 
         this.requestTable(waypoints, params, (err, response) => {
             if (err) return callback(err);
